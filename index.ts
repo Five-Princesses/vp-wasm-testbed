@@ -65,11 +65,21 @@ ws.on('message', async (data: WebSocket.Data) => {
           try {
             console.log(sequencerMessage);
             // eslint-disable-next-line
-            const result = (global as any).CalculateTransactionsRootWithStartTx(
+            // const result = (global as any).CalculateTransactionsRootWithStartTx(
+            //   sequencerMessage,
+            //   previousTimestamp
+            // );
+            // console.log('Calculated Transactions Root:', result);
+            // eslint-disable-next-line
+            const result = (global as any).GetTransactionDetailsWithRoot(
               sequencerMessage,
               previousTimestamp
             );
-            console.log('Calculated Transactions Root:', result);
+            const parsedResult = JSON.parse(result);
+            console.log(parsedResult);
+            if (parsedResult.data.transactions.length > 1) {
+              console.log(parsedResult.data.transactions[1]);
+            }
           } catch (err) {
             console.error(
               'Error executing Go function, restarting Go runtime:',
