@@ -13,6 +13,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "viem": "^2.21.35",
     "ws": "^8.18.0"
   },
   "devDependencies": {
